@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import "semantic-ui-css/semantic.min.css";
+import { Button } from "semantic-ui-react";
+import moment from "moment";
 
-function App() {
+export default () => {
+  const [counting, setCounting] = useState(false);
+  const [goal, setGoal] = useState(25 * 60);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    counting &&
+      setTimeout(() => {
+        setCount(count + 1);
+      }, 1000);
+  });
+
+  const display = moment(
+    moment.duration((goal - count) * 1000).asMilliseconds()
+  ).format("mm:ss");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>{display}</div>
+      <Button
+        onClick={() => {
+          setCounting(true);
+        }}
+        disabled={counting}
+      >
+        Start
+      </Button>
+      <Button
+        onClick={() => {
+          setCounting(false);
+        }}
+        disabled={!counting}
+      >
+        Stop
+      </Button>
+    </>
   );
-}
-
-export default App;
+};
