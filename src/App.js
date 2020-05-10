@@ -4,13 +4,13 @@ import "semantic-ui-css/semantic.min.css";
 import { Button } from "semantic-ui-react";
 import moment from "moment";
 
+const goal = 25 * 60;
+
 export default () => {
   const [counting, setCounting] = React.useState(false);
-  const [goal, setGoal] = React.useState(25 * 60);
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    console.log(count);
     if (goal <= count) {
       alert("Finish!");
     } else {
@@ -43,6 +43,15 @@ export default () => {
         disabled={!counting}
       >
         Stop
+      </Button>
+      <Button
+        onClick={() => {
+          setCounting(false);
+          setCount(0);
+        }}
+        disabled={counting}
+      >
+        Pomodoro
       </Button>
     </>
   );
