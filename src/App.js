@@ -3,6 +3,7 @@ import "./App.css";
 import "semantic-ui-css/semantic.min.css";
 import { Button, TextArea, Form } from "semantic-ui-react";
 import moment from "moment";
+import styled from "styled-components";
 
 const goal = 25 * 60;
 
@@ -26,8 +27,8 @@ export default () => {
   ).format("mm:ss");
 
   return (
-    <>
-      <div>{time}</div>
+    <Container>
+      <main>{time}</main>
       <div>
         <Button
           onClick={() => {
@@ -58,6 +59,21 @@ export default () => {
       <Form>
         <TextArea rows={25} placeholder="Todo ..." />
       </Form>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  text-align: center;
+  padding: 50px 400px;
+
+  main {
+    font-size: 60px;
+    line-height: normal;
+    margin-bottom: 5px;
+  }
+
+  div {
+    margin-bottom: 15px;
+  }
+`;
