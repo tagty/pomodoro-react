@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import "semantic-ui-css/semantic.min.css";
-import { Button } from "semantic-ui-react";
+import { Button, TextArea, Form } from "semantic-ui-react";
 import moment from "moment";
 
 const goal = 25 * 60;
@@ -28,31 +28,36 @@ export default () => {
   return (
     <>
       <div>{time}</div>
-      <Button
-        onClick={() => {
-          setCounting(true);
-        }}
-        disabled={counting}
-      >
-        Start
-      </Button>
-      <Button
-        onClick={() => {
-          setCounting(false);
-        }}
-        disabled={!counting}
-      >
-        Stop
-      </Button>
-      <Button
-        onClick={() => {
-          setCounting(false);
-          setCount(0);
-        }}
-        disabled={counting}
-      >
-        Pomodoro
-      </Button>
+      <div>
+        <Button
+          onClick={() => {
+            setCounting(true);
+          }}
+          disabled={counting}
+        >
+          Start
+        </Button>
+        <Button
+          onClick={() => {
+            setCounting(false);
+          }}
+          disabled={!counting}
+        >
+          Stop
+        </Button>
+        <Button
+          onClick={() => {
+            setCounting(false);
+            setCount(0);
+          }}
+          disabled={counting}
+        >
+          Pomodoro
+        </Button>
+      </div>
+      <Form>
+        <TextArea rows={25} placeholder="Todo ..." />
+      </Form>
     </>
   );
 };
