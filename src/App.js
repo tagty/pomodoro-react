@@ -14,17 +14,20 @@ export default () => {
   React.useEffect(() => {
     if (goal <= count) {
       alert("Finish!");
-    } else {
-      counting &&
-        setTimeout(() => {
-          setCount(count + 1);
-        }, 1000);
+    } else if (counting) {
+      setTimeout(() => {
+        setCount(count + 1);
+      }, 1000);
     }
   });
 
   const time = moment(
     moment.duration((goal - count) * 1000).asMilliseconds()
   ).format("mm:ss");
+
+  React.useEffect(() => {
+    document.title = time;
+  }, [time]);
 
   return (
     <Container>
